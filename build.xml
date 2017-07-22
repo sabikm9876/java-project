@@ -27,14 +27,14 @@
 
   <!-- Compiles the java code (including the usage of library for JUnit -->
   <target name="compile" depends="clean, makedir">
-    <javac srcdir="${src.dir}" destdir="${build.dir}">
+    <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
       <classpath refid="class.path" />
     </javac>
   </target>
 
   <!--Creates the deployable jar file -->
   <target name="jar" depends="compile">
-    <jar destfile="${dist.dir}\rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar" basedir="${build.dir}">
+    <jar destfile="${dist.dir}\rectangle.jar" basedir="${build.dir}">
       <manifest>
         <attribute name="Main-Class" value="Rectangulator" />
       </manifest>
