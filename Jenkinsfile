@@ -33,7 +33,7 @@ pipeline {
       }
     }
     stage("Running on CentOS") {
-      agent
+      agent {
         label 'CentOS'
       }
       steps {
@@ -42,4 +42,5 @@ pipeline {
       }
     }
   }
+}
 
