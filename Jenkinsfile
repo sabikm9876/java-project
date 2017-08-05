@@ -19,7 +19,7 @@ pipeline {
         sh 'ant -f build.xml -v'
       }
       post {
-        always {
+        success {
           archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
         }
       }
@@ -40,4 +40,6 @@ pipeline {
         sh "wget http://mars98761.mylabserver.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"  
       }
+    }
   }
+}
