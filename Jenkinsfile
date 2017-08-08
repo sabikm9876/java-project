@@ -34,7 +34,7 @@ pipeline {
     }
     stage("Test on Debian") {
       agent {
-        docker 'openjdk:8u131-jre-alpine'
+        docker 'openjdk:8u131-alpine'
       }
       steps {
         sh "wget http://mars98761.mylabserver.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
@@ -42,6 +42,9 @@ pipeline {
       }
     }
     stage('Promote to Green') {
+      agent {
+        label 'apache'
+      } 
       steps {
         sh "cp /var/www/html/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${env.BUILD_NUMBER}.jar"
       }
